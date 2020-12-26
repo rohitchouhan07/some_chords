@@ -20,6 +20,12 @@ char *choices[] = {
   "G chords",
 };
 
+/*
+ * On select function declaration
+ */
+
+void func(char *name);
+
 int main()
 {
     ITEM **my_items;
@@ -40,7 +46,10 @@ int main()
     n_choices = ARRAY_SIZE(choices);
     my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
     for(i = 0; i < n_choices; ++i)
+    {
         my_items[i] = new_item(choices[i], choices[i]);
+        set_item_userptr(my_items[i], func);
+    }
     my_items[n_choices] = (ITEM *)NULL;
     /*
      * Create menu
@@ -59,14 +68,25 @@ int main()
 
     while((c = getch()) != KEY_F(1))
             {
-            switch(c){
+            switch(c)
+            {
                 case KEY_DOWN:
                     menu_driver(my_menu, REQ_DOWN_ITEM);
                     break;
                 case KEY_UP:
                     menu_driver(my_menu, REQ_UP_ITEM);
                     break;
-                     }
+                case 10:
+                    {
+                    ITEM *cur;
+                    void (*p)(char *);
+                    cur = current_item(my_menu);
+                    p = item_userptr(cur);
+                    p((char *)item_name(cur));
+                    pos_menu_cursor(my_menu);
+                    break;
+                    }
+            }
             }
     /*
      * clearing up the memory
@@ -78,3 +98,14 @@ int main()
     free_menu(my_menu);
     endwin();
 }
+
+void func(char *name)
+{
+move(20,20);
+clrtoeol();
+if(name == "A chords")
+    printw("a");
+else
+printw("Some chords");
+}
+
