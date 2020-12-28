@@ -26,6 +26,11 @@ char *choices[] = {
 
 void func(char *name);
 
+/*
+ * Chord window declaration
+ */
+WINDOW *chord_win;
+
 int main()
 {
     ITEM **my_items;
@@ -39,7 +44,9 @@ int main()
     initscr();
     cbreak();
     noecho();
-    keypad(stdscr, TRUE);
+    keypad(stdscr, TRUE); 
+    chord_win = newwin(LINES - 3, 100, 0, 25);
+   // box(chord_win, 0, 0);
     /*
      * Initialise items
      */
@@ -61,7 +68,7 @@ int main()
     post_menu(my_menu);
     mvprintw(LINES - 2, 0, "Up and Down arrow keys to navigate, ENTER to select (F1 to Exit)");
     refresh();
-    
+    wrefresh(chord_win);
     /*
      * the loop
      */
@@ -96,16 +103,43 @@ int main()
     for(i = 0; i < n_choices; ++i)
         free_item(my_items[i]);
     free_menu(my_menu);
+    delwin(chord_win);
     endwin();
 }
 
 void func(char *name)
 {
-move(0,25);
-clrtoeol();
+wclrtoeol(chord_win);
 if(name == "A chords")
-    printw("|------X------|\n");
+{   wmove(chord_win, 0, 0);
+    wclrtoeol(chord_win);
+    FILE *fptr;
+    char c;
+    char *filename = "a.txt";
+    fptr = fopen(filename, "r");
+    if(fptr == NULL)
+    {
+        printw("Cannot open file\n");
+    }
+    c = fgetc(fptr);
+    while (c!= EOF)
+    {
+    wprintw(chord_win, "%c", c);
+    c = fgetc(fptr);
+    }
+    wrefresh(chord_win);
+    fclose(fptr);
+}else if(name == "B chords"){
+    
+
+}
+
 else
-printw("Some chords");
+{
+    wclrtoeol(chord_win);
+    wprintw(chord_win, "invalid Selection\n");
+    wrefresh(chord_win);
+}
+
 }
 
