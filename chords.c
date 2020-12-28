@@ -47,7 +47,7 @@ int main()
     my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
     for(i = 0; i < n_choices; ++i)
     {
-        my_items[i] = new_item(choices[i], choices[i]);
+        my_items[i] = new_item(choices[i], NULL);
         set_item_userptr(my_items[i], func);
     }
     my_items[n_choices] = (ITEM *)NULL;
@@ -59,7 +59,7 @@ int main()
      * posting the menu
      */
     post_menu(my_menu);
-    mvprintw(LINES - 2, 0, "Up and Down arrow keys to navigate (F1 to Exit)");
+    mvprintw(LINES - 2, 0, "Up and Down arrow keys to navigate, ENTER to select (F1 to Exit)");
     refresh();
     
     /*
@@ -101,10 +101,10 @@ int main()
 
 void func(char *name)
 {
-move(20,20);
+move(0,25);
 clrtoeol();
 if(name == "A chords")
-    printw("a");
+    printw("|------X------|\n");
 else
 printw("Some chords");
 }
