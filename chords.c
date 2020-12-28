@@ -119,7 +119,7 @@ if(name == "A chords")
     fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
-        printw("Cannot open file\n");
+        wprintw(chord_win, "Cannot open file\n");
     }
     c = fgetc(fptr);
     while (c!= EOF)
@@ -130,7 +130,24 @@ if(name == "A chords")
     wrefresh(chord_win);
     fclose(fptr);
 }else if(name == "B chords"){
-    
+    wmove(chord_win, 0, 0);
+    wclrtoeol(chord_win);
+    FILE *fptr;
+    char c;
+    char *filename = "b.txt";
+    fptr = fopen(filename, "r");
+    if(fptr == NULL)
+    {
+        wprintw(chord_win, "Cannot open file\n");
+    }
+    c = fgetc(fptr);
+    while (c!= EOF)
+    {
+    wprintw(chord_win, "%c", c);
+    c = fgetc(fptr);
+    }
+    wrefresh(chord_win);
+    fclose(fptr);
 
 }
 
