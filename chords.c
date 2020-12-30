@@ -29,7 +29,8 @@ void func(char *name);
 /*
  * Chord window declaration
  */
-WINDOW *chord_win;
+WINDOW *chord_win1;
+WINDOW *chord_win2;
 
 int main()
 {
@@ -45,8 +46,8 @@ int main()
     cbreak();
     noecho();
     keypad(stdscr, TRUE); 
-    chord_win = newwin(LINES - 3, 100, 0, 25);
-   // box(chord_win, 0, 0);
+    chord_win1 = newwin(LINES - 3, 20, 0, 25);
+    chord_win2 = newwin(LINES - 3, 20, 0, 50);
     /*
      * Initialise items
      */
@@ -68,7 +69,8 @@ int main()
     post_menu(my_menu);
     mvprintw(LINES - 2, 0, "Up and Down arrow keys to navigate, ENTER to select (F1 to Exit)");
     refresh();
-    wrefresh(chord_win);
+    wrefresh(chord_win1);
+    wrefresh(chord_win2);
     /*
      * the loop
      */
@@ -103,59 +105,71 @@ int main()
     for(i = 0; i < n_choices; ++i)
         free_item(my_items[i]);
     free_menu(my_menu);
-    delwin(chord_win);
+    delwin(chord_win1);
+    delwin(chord_win2);
     endwin();
 }
 
 void func(char *name)
 {
-wclrtoeol(chord_win);
-if(name == "A chords")
-{   wmove(chord_win, 0, 0);
-    wclrtoeol(chord_win);
-    FILE *fptr;
-    char c;
-    char *filename = "a.txt";
-    fptr = fopen(filename, "r");
+    wclrtoeol(chord_win1);
+    if(name == "A chords")
+    {   wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        int col = 1;
+        FILE *fptr;
+        char c;
+        char *filename = "a.txt";
+        fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
-        wprintw(chord_win, "Cannot open file\n");
+        wprintw(chord_win1, "Cannot open file\n");
     }
     c = fgetc(fptr);
     while (c!= EOF)
     {
-    wprintw(chord_win, "%c", c);
-    c = fgetc(fptr);
+    if(c == '>')
+    {
+        col++;
     }
-    wrefresh(chord_win);
+    if(col == 1){
+        wprintw(chord_win1, "%c", c);
+        c = fgetc(fptr);
+    }else if(col == 2){
+        wprintw(chord_win2, "%c", c);
+        c = fgetc(fptr);
+    }    
+    }
+    wrefresh(chord_win1);
+    wrefresh(chord_win2);
     fclose(fptr);
-}else if(name == "B chords"){
-    wmove(chord_win, 0, 0);
-    wclrtoeol(chord_win);
-    FILE *fptr;
-    char c;
-    char *filename = "b.txt";
-    fptr = fopen(filename, "r");
-    if(fptr == NULL)
-    {
-        wprintw(chord_win, "Cannot open file\n");
-    }
+    }else if(name == "B chords"){
+        wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        FILE *fptr;
+        char c;
+        char *filename = "b.txt";
+        fptr = fopen(filename, "r");
+        if(fptr == NULL)
+        {
+            wprintw(chord_win1,  "Cannot open file\n");
+        }
     c = fgetc(fptr);
     while (c!= EOF)
     {
-    wprintw(chord_win, "%c", c);
+    wprintw(chord_win1, "%c", c);
     c = fgetc(fptr);
     }
-    wrefresh(chord_win);
+    wrefresh(chord_win1);
     fclose(fptr);
 
 }
 
 else
 {
-    wclrtoeol(chord_win);
-    wprintw(chord_win, "invalid Selection\n");
-    wrefresh(chord_win);
+    wclrtoeol(chord_win1);
+    wprintw(chord_win1, "invalid Selection\n");
+    wrefresh(chord_win1);
 }
 
 }
