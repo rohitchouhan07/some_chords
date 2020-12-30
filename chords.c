@@ -130,6 +130,7 @@ void func(char *name)
     {
     if(c == '>')
     {
+        c = fgetc(fptr);
         col++;
     }
     if(col == 1){
@@ -143,27 +144,205 @@ void func(char *name)
     wrefresh(chord_win1);
     wrefresh(chord_win2);
     fclose(fptr);
-    }else if(name == "B chords"){
-        wmove(chord_win1, 0, 0);
+    }
+
+if(name == "B chords")
+    {   wmove(chord_win1, 0, 0);
         wclrtoeol(chord_win1);
+        int col = 1;
         FILE *fptr;
         char c;
         char *filename = "b.txt";
         fptr = fopen(filename, "r");
-        if(fptr == NULL)
-        {
-            wprintw(chord_win1,  "Cannot open file\n");
-        }
+    if(fptr == NULL)
+    {
+        wprintw(chord_win1, "Cannot open file\n");
+    }
     c = fgetc(fptr);
     while (c!= EOF)
     {
-    wprintw(chord_win1, "%c", c);
-    c = fgetc(fptr);
+    if(c == '>')
+    {
+        c = fgetc(fptr);
+        col++;
+    }
+    if(col == 1){
+        wprintw(chord_win1, "%c", c);
+        c = fgetc(fptr);
+    }else if(col == 2){
+        wprintw(chord_win2, "%c", c);
+        c = fgetc(fptr);
+    }    
     }
     wrefresh(chord_win1);
+    wrefresh(chord_win2);
     fclose(fptr);
-
-}
+    }
+    
+if(name == "C chords")
+    {   wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        int col = 1;
+        FILE *fptr;
+        char c;
+        char *filename = "c.txt";
+        fptr = fopen(filename, "r");
+    if(fptr == NULL)
+    {
+        wprintw(chord_win1, "Cannot open file\n");
+    }
+    c = fgetc(fptr);
+    while (c!= EOF)
+    {
+    if(c == '>')
+    {
+        c = fgetc(fptr);
+        col++;
+    }
+    if(col == 1){
+        wprintw(chord_win1, "%c", c);
+        c = fgetc(fptr);
+    }else if(col == 2){
+        wprintw(chord_win2, "%c", c);
+        c = fgetc(fptr);
+    }    
+    }
+    wrefresh(chord_win1);
+    wrefresh(chord_win2);
+    fclose(fptr);
+    }
+    
+if(name == "D chords")
+    {   wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        int col = 1;
+        FILE *fptr;
+        char c;
+        char *filename = "d.txt";
+        fptr = fopen(filename, "r");
+    if(fptr == NULL)
+    {
+        wprintw(chord_win1, "Cannot open file\n");
+    }
+    c = fgetc(fptr);
+    while (c!= EOF)
+    {
+    if(c == '>')
+    {
+        c = fgetc(fptr);
+        col++;
+    }
+    if(col == 1){
+        wprintw(chord_win1, "%c", c);
+        c = fgetc(fptr);
+    }else if(col == 2){
+        wprintw(chord_win2, "%c", c);
+        c = fgetc(fptr);
+    }    
+    }
+    wrefresh(chord_win1);
+    wrefresh(chord_win2);
+    fclose(fptr);
+    }
+    
+if(name == "E chords")
+    {   wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        int col = 1;
+        FILE *fptr;
+        char c;
+        char *filename = "e.txt";
+        fptr = fopen(filename, "r");
+    if(fptr == NULL)
+    {
+        wprintw(chord_win1, "Cannot open file\n");
+    }
+    c = fgetc(fptr);
+    while (c!= EOF)
+    {
+    if(c == '>')
+    {
+        c = fgetc(fptr);
+        col++;
+    }
+    if(col == 1){
+        wprintw(chord_win1, "%c", c);
+        c = fgetc(fptr);
+    }else if(col == 2){
+        wprintw(chord_win2, "%c", c);
+        c = fgetc(fptr);
+    }    
+    }
+    wrefresh(chord_win1);
+    wrefresh(chord_win2);
+    fclose(fptr);
+    }
+    
+if(name == "F chords")
+    {   wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        int col = 1;
+        FILE *fptr;
+        char c;
+        char *filename = "f.txt";
+        fptr = fopen(filename, "r");
+    if(fptr == NULL)
+    {
+        wprintw(chord_win1, "Cannot open file\n");
+    }
+    c = fgetc(fptr);
+    while (c!= EOF)
+    {
+    if(c == '>')
+    {
+        c = fgetc(fptr);
+        col++;
+    }
+    if(col == 1){
+        wprintw(chord_win1, "%c", c);
+        c = fgetc(fptr);
+    }else if(col == 2){
+        wprintw(chord_win2, "%c", c);
+        c = fgetc(fptr);
+    }    
+    }
+    wrefresh(chord_win1);
+    wrefresh(chord_win2);
+    fclose(fptr);
+    }
+    
+if(name == "G chords")
+    {   wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        int col = 1;
+        FILE *fptr;
+        char c;
+        char *filename = "g.txt";
+        fptr = fopen(filename, "r");
+    if(fptr == NULL)
+    {
+        wprintw(chord_win1, "Cannot open file\n");
+    }
+    c = fgetc(fptr);
+    while (c!= EOF)
+    {
+    if(c == '>')
+    {
+        c = fgetc(fptr);
+        col++;
+    }
+    if(col == 1){
+        wprintw(chord_win1, "%c", c);
+        c = fgetc(fptr);
+    }else if(col == 2){
+        wprintw(chord_win2, "%c", c);
+        c = fgetc(fptr);
+    }    
+    }
+    wrefresh(chord_win1);
+    wrefresh(chord_win2);
+    fclose(fptr);
+    }
 
 else
 {
