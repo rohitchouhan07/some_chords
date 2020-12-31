@@ -18,15 +18,11 @@ char *choices[] = {
   "G chords",
 };
 
-/*
- * On select function declaration
- */
+/* On select function declaration */
 
 void func(char *name);
 
-/*
- * Chord window declarations
- */
+/* Chord window and menu window declarations */
 WINDOW *chord_win1;
 WINDOW *chord_win2;
 WINDOW *my_menu_win;
@@ -40,9 +36,9 @@ int main()
     ITEM *cur_item;
     ITEM *cur;
     void (*p)(char *);
-    /*
-     * Initialise curses
-     */
+    
+    /* Initialise curses */
+    
     initscr();
     cbreak();
     noecho();
@@ -51,9 +47,9 @@ int main()
     chord_win2 = newwin(LINES - 3, 20, 0, 50);
     my_menu_win = newwin(10, 11, 0, 0);
     keypad(my_menu_win, TRUE);
-    /*
-     * Initialise items
-     */
+    
+    /* Initialise items */
+    
     n_choices = ARRAY_SIZE(choices);
     my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
     for(i = 0; i < n_choices; ++i)
@@ -62,36 +58,37 @@ int main()
         set_item_userptr(my_items[i], func);
     }
     my_items[n_choices] = (ITEM *)NULL;
-    /*
-     * Create menu
-     */
+    
+    /* Create menu */
+    
     my_menu = new_menu((ITEM **)my_items);
     
     /* Set main window and sub window */
+    
     set_menu_win(my_menu, my_menu_win);
     set_menu_sub(my_menu, derwin(my_menu_win, 8, 8, 1, 1));
     
     /* Set menu mark to the string " * " */
+   
     set_menu_mark(my_menu, "*");
     
 	/* Print a border around the main window and print a title */
+    
     box(my_menu_win, 0, 0);
         
-    /*
-     * posting the menu
-     */
+    /* posting the menu and refreshing windows */
+    
     post_menu(my_menu);
     mvprintw(LINES - 2, 0, "Up and Down arrow keys to navigate, ENTER to select (F1 to Exit)");
     refresh();
     wrefresh(my_menu_win);
     wrefresh(chord_win1);
     wrefresh(chord_win2);
-    /*
-     * the loop
-     */
+    
+    /* the main loop for getting keystrokes */
 
     while((c = getch()) != KEY_F(1))
-            {
+        {
             switch(c)
             {
                 case KEY_DOWN:
@@ -111,20 +108,17 @@ int main()
                     wrefresh(my_menu_win);
                     break;
                 case 10:
-                    {
                     cur = current_item(my_menu);
                     p = item_userptr(cur);
                     p((char *)item_name(cur));
                     pos_menu_cursor(my_menu);
                     wrefresh(my_menu_win);
                     break;
-                    }
             }
             
-            }
-    /*
-     * clearing up the memory
-     */
+         }
+    
+    /* clearing up the memory */
 
     unpost_menu(my_menu);
     for(i = 0; i < n_choices; ++i)
@@ -134,6 +128,8 @@ int main()
     delwin(chord_win2);
     endwin();
 }
+
+/* On select function definition */
 
 void func(char *name)
 {
@@ -172,7 +168,7 @@ void func(char *name)
     fclose(fptr);
     }
 
-if(name == "B chords")
+	else if(name == "B chords")
     {   wmove(chord_win1, 0, 0);
         wclrtoeol(chord_win1);
         wmove(chord_win2, 0, 0);
@@ -207,7 +203,7 @@ if(name == "B chords")
     fclose(fptr);
     }
     
-if(name == "C chords")
+	else if(name == "C chords")
     {   wmove(chord_win1, 0, 0);
         wclrtoeol(chord_win1);
         wmove(chord_win2, 0, 0);
@@ -242,7 +238,7 @@ if(name == "C chords")
     fclose(fptr);
     }
     
-if(name == "D chords")
+	else if(name == "D chords")
     {   wmove(chord_win1, 0, 0);
         wclrtoeol(chord_win1);
         wmove(chord_win2, 0, 0);
@@ -277,7 +273,7 @@ if(name == "D chords")
     fclose(fptr);
     }
     
-if(name == "E chords")
+	else if(name == "E chords")
     {   wmove(chord_win1, 0, 0);
         wclrtoeol(chord_win1);
         wmove(chord_win2, 0, 0);
@@ -312,7 +308,7 @@ if(name == "E chords")
     fclose(fptr);
     }
     
-if(name == "F chords")
+	else if(name == "F chords")
     {   wmove(chord_win1, 0, 0);
         wclrtoeol(chord_win1);
         wmove(chord_win2, 0, 0);
@@ -347,7 +343,7 @@ if(name == "F chords")
     fclose(fptr);
     }
     
-if(name == "G chords")
+	else if(name == "G chords")
     {   wmove(chord_win1, 0, 0);
         wclrtoeol(chord_win1);
         wmove(chord_win2, 0, 0);
@@ -381,7 +377,15 @@ if(name == "G chords")
     wrefresh(chord_win2);
     fclose(fptr);
     }
-
+	else
+	{
+		wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        wmove(chord_win2, 0, 0);
+        wclrtoeol(chord_win2);
+        wprintw(chord_win1, "Cannot open file\n");
+	}
 
 }
+	
 
