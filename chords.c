@@ -1,4 +1,5 @@
 /* Import the required headers */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,7 +46,7 @@ int main()
     keypad(stdscr, TRUE); 
     chord_win1 = newwin(LINES - 3, 20, 0, 25);
     chord_win2 = newwin(LINES - 3, 20, 0, 50);
-    my_menu_win = newwin(10, 11, 0, 0);
+    my_menu_win = newwin(9, 12, 0, 0);
     keypad(my_menu_win, TRUE);
     
     /* Initialise items */
@@ -66,7 +67,7 @@ int main()
     /* Set main window and sub window */
     
     set_menu_win(my_menu, my_menu_win);
-    set_menu_sub(my_menu, derwin(my_menu_win, 8, 8, 1, 1));
+    set_menu_sub(my_menu, derwin(my_menu_win, 8, 10, 1, 1));
     
     /* Set menu mark to the string " * " */
    
