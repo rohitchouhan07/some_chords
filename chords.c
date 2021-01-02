@@ -142,7 +142,7 @@ void func(char *name)
         int col = 1;
         FILE *fptr;
         char c;
-        char *filename = "a.txt";
+        char *filename = "/usr/share/some_chords/a.txt";
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
@@ -177,7 +177,7 @@ void func(char *name)
         int col = 1;
         FILE *fptr;
         char c;
-        char *filename = "b.txt";
+        char *filename = "/usr/share/some_chords/b.txt";
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
@@ -212,7 +212,7 @@ void func(char *name)
         int col = 1;
         FILE *fptr;
         char c;
-        char *filename = "c.txt";
+        char *filename = "/usr/share/some_chords/c.txt";
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
@@ -247,7 +247,7 @@ void func(char *name)
         int col = 1;
         FILE *fptr;
         char c;
-        char *filename = "d.txt";
+        char *filename = "/usr/share/some_chords/d.txt";
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
@@ -282,7 +282,7 @@ void func(char *name)
         int col = 1;
         FILE *fptr;
         char c;
-        char *filename = "e.txt";
+        char *filename = "/usr/share/some_chords/e.txt";
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
@@ -317,7 +317,7 @@ void func(char *name)
         int col = 1;
         FILE *fptr;
         char c;
-        char *filename = "f.txt";
+        char *filename = "/usr/share/some_chords/f.txt";
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
@@ -352,7 +352,7 @@ void func(char *name)
         int col = 1;
         FILE *fptr;
         char c;
-        char *filename = "g.txt";
+        char *filename = "/usr/share/some_chords/g.txt";
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
