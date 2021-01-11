@@ -5,7 +5,7 @@
 #include <string.h>
 #include <curses.h>
 #include <menu.h>
-
+#include <signal.h>
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 #define CTRLD   4
 
@@ -23,13 +23,17 @@ char *choices[] = {
 
 void func(char *name);
 
+/* SIGWINCH handler declaration */
+
+//static void sigwinch_hndler(int sig);
+
 /* Chord window and menu window declarations */
 WINDOW *chord_win1;
 WINDOW *chord_win2;
 WINDOW *my_menu_win;
-
+    
 int main()
-{
+{   
     ITEM **my_items;
     int c;
     MENU *my_menu;
@@ -92,6 +96,15 @@ int main()
         {
             switch(c)
             {
+                case KEY_RESIZE:
+                    clear();
+                    int y, x;
+                    getmaxyx(stdscr, y, x);
+                    resizeterm(y, x);
+                    refresh();
+                    wrefresh(chord_win1);
+                    wrefresh(chord_win2);
+                    wrefresh(my_menu_win);
                 case KEY_DOWN:
                     menu_driver(my_menu, REQ_DOWN_ITEM);
                     cur = current_item(my_menu);
@@ -147,7 +160,11 @@ void func(char *name)
     if(fptr == NULL)
     {
         wprintw(chord_win1, "Cannot open file\n");
+        wrefresh(chord_win1);
+        wrefresh(chord_win2);
     }
+    else
+    {
     c = fgetc(fptr);
     while (c!= EOF)
     {
@@ -168,6 +185,7 @@ void func(char *name)
     wrefresh(chord_win2);
     fclose(fptr);
     }
+	}
 
 	else if(name == "B chords")
     {   wmove(chord_win1, 0, 0);
@@ -389,4 +407,6 @@ void func(char *name)
 
 }
 	
+/* sigwinch_handler function definition */
 
+//static void sigwinch_handler()
