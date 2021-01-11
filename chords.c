@@ -159,9 +159,14 @@ void func(char *name)
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
-        wprintw(chord_win1, "Cannot open file\n");
+        wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        wmove(chord_win2, 0, 0);
+        wclrtoeol(chord_win2);
+        wprintw(chord_win1, "Cannot open file");
         wrefresh(chord_win1);
         wrefresh(chord_win2);
+        refresh();
     }
     else
     {
@@ -199,8 +204,17 @@ void func(char *name)
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
-        wprintw(chord_win1, "Cannot open file\n");
+        wmove(chord_win1, 0, 0);
+        wclrtoeol(chord_win1);
+        wmove(chord_win2, 0, 0);
+        wclrtoeol(chord_win2);
+        wprintw(chord_win1, "Cannot open file");
+        wrefresh(chord_win1);
+        wrefresh(chord_win2);
+        refresh();
     }
+    else
+    {
     c = fgetc(fptr);
     while (c!= EOF)
     {
@@ -221,6 +235,7 @@ void func(char *name)
     wrefresh(chord_win2);
     fclose(fptr);
     }
+}
     
 	else if(name == "C chords")
     {   wmove(chord_win1, 0, 0);
@@ -236,6 +251,8 @@ void func(char *name)
     {
         wprintw(chord_win1, "Cannot open file\n");
     }
+    else
+    {
     c = fgetc(fptr);
     while (c!= EOF)
     {
@@ -256,6 +273,7 @@ void func(char *name)
     wrefresh(chord_win2);
     fclose(fptr);
     }
+}
     
 	else if(name == "D chords")
     {   wmove(chord_win1, 0, 0);
@@ -271,6 +289,8 @@ void func(char *name)
     {
         wprintw(chord_win1, "Cannot open file\n");
     }
+    else
+    {
     c = fgetc(fptr);
     while (c!= EOF)
     {
@@ -291,6 +311,7 @@ void func(char *name)
     wrefresh(chord_win2);
     fclose(fptr);
     }
+}
     
 	else if(name == "E chords")
     {   wmove(chord_win1, 0, 0);
@@ -306,6 +327,8 @@ void func(char *name)
     {
         wprintw(chord_win1, "Cannot open file\n");
     }
+    else
+    {
     c = fgetc(fptr);
     while (c!= EOF)
     {
@@ -326,7 +349,7 @@ void func(char *name)
     wrefresh(chord_win2);
     fclose(fptr);
     }
-    
+}
 	else if(name == "F chords")
     {   wmove(chord_win1, 0, 0);
         wclrtoeol(chord_win1);
@@ -341,6 +364,8 @@ void func(char *name)
     {
         wprintw(chord_win1, "Cannot open file\n");
     }
+    else
+    {
     c = fgetc(fptr);
     while (c!= EOF)
     {
@@ -361,6 +386,7 @@ void func(char *name)
     wrefresh(chord_win2);
     fclose(fptr);
     }
+}
     
 	else if(name == "G chords")
     {   wmove(chord_win1, 0, 0);
@@ -376,6 +402,8 @@ void func(char *name)
     {
         wprintw(chord_win1, "Cannot open file\n");
     }
+    else
+    {
     c = fgetc(fptr);
     while (c!= EOF)
     {
@@ -396,6 +424,7 @@ void func(char *name)
     wrefresh(chord_win2);
     fclose(fptr);
     }
+}
 	else
 	{
 		wmove(chord_win1, 0, 0);
