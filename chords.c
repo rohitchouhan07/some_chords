@@ -25,13 +25,13 @@ void func(char *name);
 
 /* SIGWINCH handler declaration */
 
-//static void sigwinch_hndler(int sig);
+void handle_winch(int sig);
 
 /* Chord window and menu window declarations */
 WINDOW *chord_win1;
 WINDOW *chord_win2;
 WINDOW *my_menu_win;
-    
+
 int main()
 {   
     ITEM **my_items;
@@ -48,6 +48,13 @@ int main()
     cbreak();
     noecho();
     keypad(stdscr, TRUE); 
+    
+    struct sigaction sa;
+    memset(&sa, 0, sizeof(struct sigaction));
+    sa.sa_handler = handle_winch;
+    sigaction(SIGWINCH, &sa, NULL);
+    
+    
     chord_win1 = newwin(LINES - 3, 20, 0, 25);
     chord_win2 = newwin(LINES - 3, 20, 0, 50);
     my_menu_win = newwin(9, 12, 0, 0);
@@ -96,16 +103,6 @@ int main()
         {
             switch(c)
             {
-                case KEY_RESIZE:
-                    clear();
-                    box(my_menu_win, 0, 0);
-                    wclear(chord_win1);
-                    wclear(chord_win2);
-                    wclear(my_menu_win);
-                    wrefresh(chord_win1);
-                    wrefresh(chord_win2);
-                    wrefresh(my_menu_win);
-                    refresh();
                 case KEY_DOWN:
                     menu_driver(my_menu, REQ_DOWN_ITEM);
                     cur = current_item(my_menu);
@@ -436,4 +433,13 @@ void func(char *name)
 	
 /* sigwinch_handler function definition */
 
-//static void sigwinch_handler()
+void handle_winch(int sig)
+{
+    //endwin();
+    // Needs to be called after an endwin() so ncurses will initialize
+    // itself with the new terminal dimensions.
+    wrefresh(my_menu_win);
+    wrefresh(chord_win1);
+    wrefresh(chord_win2);
+    refresh();
+}  
