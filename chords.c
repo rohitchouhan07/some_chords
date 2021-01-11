@@ -98,13 +98,14 @@ int main()
             {
                 case KEY_RESIZE:
                     clear();
-                    int y, x;
-                    getmaxyx(stdscr, y, x);
-                    resizeterm(y, x);
-                    refresh();
+                    box(my_menu_win, 0, 0);
+                    wclear(chord_win1);
+                    wclear(chord_win2);
+                    wclear(my_menu_win);
                     wrefresh(chord_win1);
                     wrefresh(chord_win2);
                     wrefresh(my_menu_win);
+                    refresh();
                 case KEY_DOWN:
                     menu_driver(my_menu, REQ_DOWN_ITEM);
                     cur = current_item(my_menu);
