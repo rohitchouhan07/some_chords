@@ -148,10 +148,9 @@ int main()
 void func(char *name)
 {
     if(name == "A chords")
-    {   wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);
+    {   
+		wclear(chord_win1);
+        wclear(chord_win2);
         int col = 1;
         FILE *fptr;
         char c;
@@ -159,14 +158,10 @@ void func(char *name)
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
-        wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);
-        wprintw(chord_win1, "Cannot open file");
+        wmove(chord_win1, 1, 0);
+        wprintw(chord_win1, "Cannot open file\n");
         wrefresh(chord_win1);
         wrefresh(chord_win2);
-        refresh();
     }
     else
     {
@@ -193,10 +188,9 @@ void func(char *name)
 	}
 
 	else if(name == "B chords")
-    {   wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);
+    {   
+		wclear(chord_win1);
+        wclear(chord_win2);
         int col = 1;
         FILE *fptr;
         char c;
@@ -204,14 +198,10 @@ void func(char *name)
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
-        wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);
-        wprintw(chord_win1, "Cannot open file");
+        wmove(chord_win1, 1, 0);
+        wprintw(chord_win1, "Cannot open file\n");
         wrefresh(chord_win1);
         wrefresh(chord_win2);
-        refresh();
     }
     else
     {
@@ -238,10 +228,9 @@ void func(char *name)
 }
     
 	else if(name == "C chords")
-    {   wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);
+    {   		
+		wclear(chord_win1);
+        wclear(chord_win2);
         int col = 1;
         FILE *fptr;
         char c;
@@ -276,10 +265,9 @@ void func(char *name)
 }
     
 	else if(name == "D chords")
-    {   wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);;
+    {   		
+		wclear(chord_win1);
+        wclear(chord_win2);
         int col = 1;
         FILE *fptr;
         char c;
@@ -287,7 +275,10 @@ void func(char *name)
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
+        wmove(chord_win1, 1, 0);
         wprintw(chord_win1, "Cannot open file\n");
+        wrefresh(chord_win1);
+        wrefresh(chord_win2);
     }
     else
     {
@@ -314,10 +305,9 @@ void func(char *name)
 }
     
 	else if(name == "E chords")
-    {   wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);
+    {   
+		wclear(chord_win1);
+        wclear(chord_win2);
         int col = 1;
         FILE *fptr;
         char c;
@@ -325,7 +315,10 @@ void func(char *name)
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
+		wmove(chord_win1, 1, 0);
         wprintw(chord_win1, "Cannot open file\n");
+        wrefresh(chord_win1);
+        wrefresh(chord_win2);
     }
     else
     {
@@ -351,10 +344,9 @@ void func(char *name)
     }
 }
 	else if(name == "F chords")
-    {   wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);
+    {   	
+		wclear(chord_win1);
+        wclear(chord_win2);
         int col = 1;
         FILE *fptr;
         char c;
@@ -362,7 +354,10 @@ void func(char *name)
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
+        wmove(chord_win1, 1, 0);
         wprintw(chord_win1, "Cannot open file\n");
+        wrefresh(chord_win1);
+        wrefresh(chord_win2);
     }
     else
     {
@@ -389,10 +384,9 @@ void func(char *name)
 }
     
 	else if(name == "G chords")
-    {   wmove(chord_win1, 0, 0);
-        wclrtoeol(chord_win1);
-        wmove(chord_win2, 0, 0);
-        wclrtoeol(chord_win2);
+    {   
+		wclear(chord_win1);
+        wclear(chord_win2);
         int col = 1;
         FILE *fptr;
         char c;
@@ -400,7 +394,10 @@ void func(char *name)
         fptr = fopen(filename, "r");
     if(fptr == NULL)
     {
+        wmove(chord_win1, 1, 0);
         wprintw(chord_win1, "Cannot open file\n");
+        wrefresh(chord_win1);
+        wrefresh(chord_win2);
     }
     else
     {
