@@ -1,4 +1,7 @@
-/* Import the required headers */
+/* SOME CHORDS */
+/* Ncurses way to checking guitar chord shapes */
+
+/* Import the required header files */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,6 +20,7 @@ char *choices[] = {
   "E chords",
   "F chords",
   "G chords",
+  "Help",
 };
 
 /* On select function declaration */
@@ -24,7 +28,7 @@ char *choices[] = {
 void func(char *name);
 
 /* SIGWINCH handler declaration */
-
+/* this function should make the output resposive to window size changes */
 void handle_winch(int sig);
 
 /* Chord window and menu window declarations */
@@ -32,6 +36,7 @@ WINDOW *chord_win1;
 WINDOW *chord_win2;
 WINDOW *my_menu_win;
 
+/* MAIN FUNCTION */
 int main()
 {   
     ITEM **my_items;
@@ -57,7 +62,7 @@ int main()
     
     chord_win1 = newwin(LINES - 3, 20, 0, 25);
     chord_win2 = newwin(LINES - 3, 20, 0, 50);
-    my_menu_win = newwin(9, 12, 0, 0);
+    my_menu_win = newwin(10, 12, 0, 0);
     keypad(my_menu_win, TRUE);
     
     /* Initialise items */
@@ -84,7 +89,7 @@ int main()
    
     set_menu_mark(my_menu, "*");
     
-	/* Print a border around the main window and print a title */
+	/* Print a border around the menu */
     
     box(my_menu_win, 0, 0);
         
