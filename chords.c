@@ -100,6 +100,10 @@ int main()
     refresh();
     wrefresh(my_menu_win);
     wrefresh(chord_win2);
+	
+	/* Print greeting */
+    
+    wprintw(chord_win1, "Welcome!!\n");
     wrefresh(chord_win1);
     
     
