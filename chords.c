@@ -99,8 +99,9 @@ int main()
     mvprintw(LINES - 2, 0, "Up and Down arrow keys to navigate, ENTER to select (F1 to Exit)");
     refresh();
     wrefresh(my_menu_win);
-    wrefresh(chord_win1);
     wrefresh(chord_win2);
+    wrefresh(chord_win1);
+    
     
     /* the main loop for getting keystrokes */
 
@@ -424,7 +425,15 @@ void func(char *name)
     wrefresh(chord_win2);
     fclose(fptr);
     }
-}
+}else if(name == "Help")
+{
+	wclear(chord_win1);
+	wclear(chord_win2);
+	wmove(chord_win1, 0, 0);
+	wprintw(chord_win1, "Coming soon\n");
+	wrefresh(chord_win1);
+	wrefresh(chord_win2);
+	}
 	else
 	{
 		wmove(chord_win1, 0, 0);
