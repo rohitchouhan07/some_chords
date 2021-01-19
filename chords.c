@@ -32,6 +32,8 @@ void func(char *name);
 void handle_winch(int sig);
 
 /* Chord window and menu window declarations */
+/* Chord wins are like columns, which is used as a window to print out the file containing the diagrams in ASCII */
+
 WINDOW *chord_win1;
 WINDOW *chord_win2;
 WINDOW *my_menu_win;
