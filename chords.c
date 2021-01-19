@@ -436,7 +436,7 @@ void func(char *name)
 	wclear(chord_win1);
 	wclear(chord_win2);
 	wmove(chord_win1, 0, 0);
-	wprintw(chord_win1, "Coming soon\n");
+	wprintw(chord_win1, "x - don't play that string\n0 - play the string open\n(1..9) - play the string from that fret");
 	wrefresh(chord_win1);
 	wrefresh(chord_win2);
 	}
